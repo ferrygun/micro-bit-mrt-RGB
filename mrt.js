@@ -15,8 +15,8 @@ function getData(callback) {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
         },
         form: {
-          key: '',
-          stationcode: '' //To Pasir Ris
+          key: 'MEtSAm6Tzl5PPT3bmLq1JqkFvcpXmKL2M7EWbq15',
+          stationcode: 'COM_B' //To Pasir Ris
         },
         timeout: 10000,
         followRedirect: true,
