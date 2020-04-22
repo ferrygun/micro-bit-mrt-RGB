@@ -154,15 +154,15 @@
         let button_LED_Green_OFF = document.querySelector('#R'); //R = 76d
         button_LED_Green_OFF.addEventListener('click', buttonClick);
 
-		let button_LED_Red_OFF = document.querySelector('#A'); //A = 65d
-        button_LED_Red_OFF.addEventListener('click', buttonClick);
-        let button_LED_Red_ON = document.querySelector('#B'); //B = 66d
+		let button_LED_Red_ON = document.querySelector('#A'); //A = 65d
         button_LED_Red_ON.addEventListener('click', buttonClick);
+        let button_LED_Red_OFF = document.querySelector('#B'); //B = 66d
+        button_LED_Red_OFF.addEventListener('click', buttonClick);
 
-		let button_LED_Blue_OFF = document.querySelector('#C'); //C = 67d
-        button_LED_Blue_OFF.addEventListener('click', buttonClick);
-        let button_LED_Blue_ON = document.querySelector('#D'); //D = 68d
+		let button_LED_Blue_ON = document.querySelector('#C'); //C = 67d
         button_LED_Blue_ON.addEventListener('click', buttonClick);
+        let button_LED_Blue_OFF = document.querySelector('#D'); //D = 68d
+        button_LED_Blue_OFF.addEventListener('click', buttonClick);
 
 
         function buttonClick(e) {
@@ -375,8 +375,28 @@
 
 		pubnub.addListener({
 			message: function(event) {
-			  console.log(event.message.content);
-			  toggleLED(76);
+				
+				var value = event.message.content;
+				console.log("val: " + value);
+
+				if(value < 55) {
+					//<55 - Green
+					toggleLED(76); //G
+					toggleLED(66); //R
+					toggleLED(68); //B
+				} 
+				else if(value >= 55 && value <= 80) {
+					//55 - 80 Blue
+					toggleLED(82); //G
+					toggleLED(66); //R
+					toggleLED(67); //B
+				}
+				else if(value > 80) {
+					//80 - 100 Red
+					toggleLED(82); //G
+					toggleLED(65); //R
+					toggleLED(68); //B
+				}
 			},
 			presence: function(event) {
 			  console.log(event.uuid + " has joined. That's you!")
